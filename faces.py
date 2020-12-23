@@ -83,11 +83,17 @@ while True:
 
         # recognize ? deep learned model predict keras tensorflow pyttorch scikit learn
         id_, conf = recognizer.predict(roi_gray)
-        if conf>=45 and conf <= 85:
+        if conf>=45: # and conf <= 85:
             print(id_)
             print(labels[id_])
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            name = labels[id_]
+            color = (255,255,255)
+            stroke = 2
+            cv2.putText(frame, name, (x,y), font, 1, color, stroke, cv2.LINE_AA)
+
         img_item = "my-image.png"
-        cv2.imwrite(img_item, roi_gray)
+        cv2.imwrite(img_item, roi_color)
 
         color = (255, 0, 0) #BGR 0-255
         stroke = 2
