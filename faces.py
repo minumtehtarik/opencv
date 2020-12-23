@@ -24,6 +24,8 @@ import cv2
 #         break
 
 face_cascade = cv2.CascadeClassifier('src/cascades/data/haarcascade_frontalface_alt2.xml')    
+recognizer  = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read("trainer.yml")
 
 cap = cv2.VideoCapture(0)
 # cap.set(3,640)
@@ -74,7 +76,9 @@ while True:
         roi_color = frame[y:y+h, x:x+w] 
 
         # recognize ? deep learned model predict keras tensorflow pyttorch scikit learn
-
+        id_, conf = recognizer.predict(roi_gray)
+        if conf>=45 and conf <= 85:
+            print(id_)
         img_item = "my-image.png"
         cv2.imwrite(img_item, roi_gray)
 
