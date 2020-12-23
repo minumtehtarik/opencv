@@ -72,6 +72,9 @@ while True:
         # roi = region of interest
         roi_gray = gray[y:y+h, x:x+w] #(ycord_start, ycard_end)
         roi_color = frame[y:y+h, x:x+w] 
+
+        # recognize ? deep learned model predict keras tensorflow pyttorch scikit learn
+
         img_item = "my-image.png"
         cv2.imwrite(img_item, roi_gray)
 
