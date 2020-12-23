@@ -11,6 +11,7 @@
 
 import numpy as np
 import cv2
+import pickle
 
 # cap = cv2.VideoCapture(0)
 # cap.set(3,640)
@@ -26,6 +27,11 @@ import cv2
 face_cascade = cv2.CascadeClassifier('src/cascades/data/haarcascade_frontalface_alt2.xml')    
 recognizer  = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("trainer.yml")
+
+labels = {"person_name": 1}
+with open("label.pickle", "rb") as f:
+    og_labels = pickle.load(f)
+    labels = {v:k for k,v in og_labels.items()}
 
 cap = cv2.VideoCapture(0)
 # cap.set(3,640)
@@ -79,6 +85,7 @@ while True:
         id_, conf = recognizer.predict(roi_gray)
         if conf>=45 and conf <= 85:
             print(id_)
+            print(labels[id_])
         img_item = "my-image.png"
         cv2.imwrite(img_item, roi_gray)
 
