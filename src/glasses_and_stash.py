@@ -38,7 +38,7 @@ while(True):
         for (ex, ey, ew, eh) in eyes:
             #cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 3)
             roi_eyes = roi_gray[ey: ey + eh, ex: ex + ew]
-            glasses2 = image_resize(glasses.copy(), width=ew)
+            glasses2 = image_resize(glasses.copy(), width=ew) #width=int(ew*1.2)
 
             gw, gh, gc = glasses2.shape
             for i in range(0, gw):
