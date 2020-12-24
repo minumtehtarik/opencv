@@ -107,8 +107,10 @@ while True:
         end_cord_y = y + h
         # cv2.rectangle(frame, (x, y), (width, height))
         cv2.rectangle(frame, (x, y), (end_cord_x, end_cord_y), color, stroke)
-        eyes = eye_cascade.detectMultiScale(roi_gray)    
-        for (ex,ey,ew,eh) in eyes:
+        # eyes = eye_cascade.detectMultiScale(roi_gray)    
+        subitems = smile_cascade.detectMultiScale(roi_gray)
+        # for (ex,ey,ew,eh) in eyes:
+        for (ex,ey,ew,eh) in subitems:
             cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
  
 
